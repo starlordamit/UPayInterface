@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LINK GENERATOR</title>
+
+    <script
+      async
+      data-id="five-server"
+      data-file="${filePath}"
+      type="application/javascript"
+      src="/fiveserver.js"
+    ></script>
+
+    <link rel="stylesheet" href="/fiveserver/serve-preview/vs.min.css" />
+    <script src="/fiveserver/serve-preview/highlight.min.js"></script>
+
+    <link rel="stylesheet" href="/fiveserver/scripts/directory.css" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <div class="directory">
+        <h1>
+          <a href="/">~</a> / <a href="/data.txt">data.txt</a><small style="margin-left: 12px">
+            <a href="data.txt.fullscreen">[fullscreen]</a>
+          </small>
+        </h1>
+
+        
+
+        <div class="preview">
+            <div>
+            <pre margin="0px;"><code class="">upi://9410464303@paytm</code></pre>
+            </div></div>
+      </div>
+
+    </div>
+
+    <script>
+      let fileName = "data.";
+      let ext = "txt";
+      let lang = hljs.getLanguage(ext);
+
+      if (lang && lang.aliases && typeof lang.aliases[0] === "string") {
+        lang = lang.aliases[0];
+      } else if (lang && lang.name) {
+        if (/,/gm.test(lang.name)) {
+          lang.name = lang.name.split(",")[0];
+        }
+        ext = lang.name.toLowerCase();
+      } else {
+        ext = "txt";
+      }
+
+      const pre = document.querySelector("pre");
+      if (pre) {
+        console.log("language-" + ext);
+        pre.classList.add("language-" + ext);
+        hljs.highlightAll();
+      }
+    </script>
+  </body>
+</html>

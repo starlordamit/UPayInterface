@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://api.razorpay.com/v1/checkout/hosted -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Payment Page · Razorpay</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    
+        <script src="./Payment Page · Razorpay_files/checkout.js"></script>
+    <style>
+      body {
+        text-align: center;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Ubuntu', 'Cantarell', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        color: #414141;
+        background: #ecf0f1;
+      }
+      path {
+        fill: #6DCA00;
+      }
+      .card {
+        background: #fff;
+        border-radius: 2px;
+        box-shadow: 0 2px 9px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        margin: 30px auto;
+        width: 80%;
+        max-width: 300px;
+      }
+      a {
+        display: block;
+        margin: 30px 0 10px;
+        color: #09f;
+      }
+      #success {
+        display: none;
+      }
+    </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><meta name="theme-color" content=""></head>
+  <body onload="showCheckout()" style="overflow: hidden;">
+    <style>
+@keyframes lo{to{transform:rotate(360deg)}}@-webkit-keyframes lo{to{-webkit-transform:rotate(360deg)}}
+.loader{height:24px;width:24px;border-radius:50%;display:inline-block;
+  animation:lo .8s infinite linear;-webkit-animation:lo .8s infinite linear;
+  transition:0.3s;-webkit-transition:0.3s;
+  opacity:0;border:2px solid #3395FF;border-top-color:transparent}
+.vis{opacity:1}
+</style>
+<div class="loader vis" style="position: absolute; top: 115px; left: 50%; margin-left: -12px; display: none;"></div>
+    <div id="success" class="card">
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.959 17l-4.5-4.319 1.395-1.435 3.08 2.937 7.021-7.183 1.422 1.409-8.418 8.591z"></path></svg>
+      <h3>Payment Successful!</h3>
+      Just a moment now...
+    </div>
+    <form style="visibility: hidden" method="post" action="https://express.razorpay.com/shopify/v1/callback-handler/rTOhjiFidm2xTWy7xHGUuIpNK/order_MeJoe2A6DRCshp/live/eyJjYW5jZWxVcmwiOiJodHRwczovL3d3dy5sYXllcnMuc2hvcC9jaGVja291dHMvc2gvYzEtMTQxNGY4ZDY1ODZhYmE5YzBhNmJkNGE5MjJkZGIzYmQvcHJvY2Vzc2luZyIsICJkb21haW4iOiJsYXllcnMtc2tpbi1zaG9wLm15c2hvcGlmeS5jb20ifQ" target="_self"></form>
+    
+    
+    
+    
+    <script>
+      var form = document.forms[0];
+      var options = {"key":"rzp_live_oauth_MEObPly6SaylMR","order_id":"order_MeJoe2A6DRCshp","name":"Layers","prefill":{"contact":"","email":"fashfj@fsdf.com"},"notes":{"mode":"live","shopify_order_id":"rTOhjiFidm2xTWy7xHGUuIpNK","referer_url":"https:\/\/www.layers.shop\/"},"_":{"integration":"shopify","integration_version":"shopify-payment-app"},"__referer":"https:\/\/www.layers.shop\/"};
+      var urls    = {"callback":"https:\/\/express.razorpay.com\/shopify\/v1\/callback-handler\/rTOhjiFidm2xTWy7xHGUuIpNK\/order_MeJoe2A6DRCshp\/live\/eyJjYW5jZWxVcmwiOiJodHRwczovL3d3dy5sYXllcnMuc2hvcC9jaGVja291dHMvc2gvYzEtMTQxNGY4ZDY1ODZhYmE5YzBhNmJkNGE5MjJkZGIzYmQvcHJvY2Vzc2luZyIsICJkb21haW4iOiJsYXllcnMtc2tpbi1zaG9wLm15c2hvcGlmeS5jb20ifQ","cancel":"https:\/\/www.layers.shop\/checkouts\/sh\/c1-1414f8d6586aba9c0a6bd4a922ddb3bd\/processing"};
+
+            if (window.btoa) {
+        try {
+          var data = btoa(JSON.stringify({
+            request: {
+              url: form.action,
+              method: form.method,
+              target: '_self'
+            },
+
+            options: JSON.stringify(options),
+
+            back: urls.cancel
+          }));
+
+          options.callback_url =  location.protocol + '//' + location.hostname + '/v1/checkout/onyx?data=' + data;
+        } catch(e){}
+      }
+      
+      options.handler = function(data) {
+        document.querySelector('#success').style.display = 'block';
+        var h = '';
+        for (var i in data) {
+          h += '<input name="' + i + '" value="' + data[i] + '">';
+        }
+        form.innerHTML = h;
+        form.submit();
+      };
+
+      if (!options.modal) {
+        options.modal = {};
+      }
+
+      if (!('escape' in options.modal)) {
+        options.modal.escape = false;
+      }
+
+      if (!('confirm_close' in options.modal)) {
+        options.modal.confirm_close = true;
+      }
+
+      if (!options.theme) {
+        options.theme = {};
+      }
+
+      if (urls.cancel) {
+        options.modal.ondismiss = function() {
+            location.href = urls.cancel;
+        }
+      }
+      else {
+        options.theme.close_button = false;
+      }
+
+      // darker shade, because there is nothing behind backdrop
+      if (!options.theme.backdrop_color) {
+        options.theme.backdrop_color = 'rgba(0, 0, 0, 0.8)';
+      }
+
+      if(options.__referer) {
+          Razorpay.configure({}, {referer: options.__referer});
+          delete options.__referer;
+      }
+      
+      var razorpay = Razorpay(options);
+      function showCheckout() {
+        razorpay.open();
+        document.querySelector('.loader').style.display = 'none';
+      }
+    </script>
+  
+
+<div class="razorpay-container" style="z-index: 2147483647; position: fixed; top: 0px; display: block; left: 0px; height: 100%; width: 100%; backface-visibility: hidden; overflow-y: visible;"><style>@keyframes rzp-rot{to{transform: rotate(360deg);}}@-webkit-keyframes rzp-rot{to{-webkit-transform: rotate(360deg);}} .razorpay-container > iframe {min-height: 100%!important;}</style><div class="razorpay-backdrop" style="min-height: 100%; transition: all 0.3s ease-out 0s; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8);"><span style="text-decoration: none; background: rgb(214, 68, 68); border: 1px dashed white; padding: 3px; opacity: 0; transform: rotate(45deg); transition: opacity 0.3s ease-in 0s; font-family: lato, ubuntu, helvetica, sans-serif; color: white; position: absolute; width: 200px; text-align: center; right: -50px; top: 50px;">Test Mode</span></div><iframe style="opacity: 1; height: 100%; position: relative; background: none; display: block; border: 0px none transparent; margin: 0px; padding: 0px; z-index: 2; width: 100%;" allowtransparency="true" frameborder="0" width="100%" height="100%" src="./Payment Page · Razorpay_files/public.html" class="razorpay-checkout-frame" allow="otp-credentials"></iframe></div></body></html>

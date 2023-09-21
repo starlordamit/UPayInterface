@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">  
+    <title>UPay Interface</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <!-- <script src="script2.js"></script>
+    <script src="script.js"></script> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css">
+	  <link rel="stylesheet" href="styles.css">
+  </head>
+<body>
+    <div class="wrapper">
+      <div class="payment1">
+        <h2 id="paytm2">PAYMENT GATEWAY</h2>
+        </div>
+      </div>
+<section>
+    <div class="wrapper">
+      <div class="payment">
+        <div class="header">
+        </div>
+        <h2 id="paytm1">Payment Gateway</h2>
+        <div class="form">
+          <div class="imagepayment">
+          <div class="payimg">
+
+            <div class="row1" onclick=payapp()>
+              <!-- <a href="upi://pay?pa=9410464303@paytm&pn=Amit Kumar&am=100&cu=INR&tn=hgfsadhgFHGFDHf8MNF&url=creatorsmela.com"> -->
+            <img class="axt" type="image" src="phnpay.svg" style="border: black;align-items: center;height: 100px;width: 120px;"/>
+            <i style="font-size: 15px;color: grey;margin-left: 130px;" class='fas'>&#xf138;</i>
+          </div>
+            
+            <div class="row2" onclick=payapp()>
+            <img type="image" src="gpay.svg" style="border: black;align-items: center;height: 100px;width: 150px;"/>
+            <i style="font-size: 16px;color: grey;margin-left: 80px;" class='fas'>&#xf138;</i>
+             </div>
+             <div class="row3" onclick=payapp()>
+              <img type="image"  src="pytm.png" style="border: black;align-items: center;height: 30px;width: 100px;"/>
+              <i style="font-size: 16px;color: grey;margin-left: 130px;" class='fas'>&#xf138;</i> 
+              </div><div class="row4" onclick=payapp()> 
+              <img type="image" src="bhim.png" style="margin-left:0px;align-items: center;height: 30px;width: 80px;"/>
+              <i class='fas' style="font-size: 16px;color: grey;margin-left: 120px;">&#xf138;</i> 
+            </div>
+          
+          
+            <!-- <input type="text" class="input" placeholder="Coding Market"> -->
+            <!-- <i class="fas fa-user"></i> -->
+          </div></div>
+          <div class="card-grp space">
+            <div class="card-item icon-relative">
+              <!-- <label class="label">Expiry date:</label> -->
+              
+              <!-- <input type="text" name="expiry-data" class="input" data-mask="00 / 00"  placeholder="00 / 00">
+              <i class="far fa-calendar-alt"></i> -->
+            </div>
+            <div class="card-item icon-relative">
+              <!-- <label class="label">CVC:</label>
+              <input type="text" class="input" data-mask="000" placeholder="000">
+              <i class="fas fa-lock"></i> -->
+            </div>
+          </div>
+          <div class="qr-class" id="qr-code-container"></div>
+          
+          <div class="btn">
+            Payment Verification
+          </div> 
+          <div class="time" id="ten-countdown"></div>
+        </div>
+      </div>
+    </div>
+</section>
+  <div class="modal-parent">
+    <div class="modal">
+        <input type="number" class="input" placeholder="12 Digit UTR">
+        <button onsubmit="">Submit</button>
+        <span class="x" draggable="true">&times;</span>
+    </div>
+</div>
+
+
+
+
+
+
+    <!--<div class="wrapper">
+      <header>
+        <h1>QR Code Generator</h1>
+      </header>
+      <div class="form">
+        <input type="text" spellcheck="false" placeholder="Enter text or url">
+        <button>Generate QR Code</button> 
+        <div  class="qr-code">-->
+<!-- 
+https://www.bhimupi.org.in/images/bhim/logo.png
+https://assetscdn1.paytm.com/images/catalog/view/310944/1654517453942.png
+https://pay.google.com/about/static_kcs/images/logos/footer-logo.svg
+[url=https://getlogo.net/bharat-interface-for-money-bhim-logo-vector-svg/][img]https://getlogo.net/wp-content/uploads/2020/10/bharat-interface-for-money-bhim-logo-vector.png[/img][/url]
+
+-->
+
+
+
+
+
+
+<!--
+<div class="red" id="big-box">
+            <div class="in-big-box" id="ibb">
+              <div class="first-row">
+                <div class="gpay">
+                  <button class="btn"><img src="https://pay.google.com/about/static_kcs/images/logos/footer-logo.svg"></button></div>
+                <div class="paytm"><button class="btn"><img  src="https://assetscdn1.paytm.com/images/catalog/category/5165/paytm_logo.png"></button>
+                </div>
+              </div>
+
+            <div class="second-row">
+              <div class="phonepay">
+                <button class="btn"><img src="phnpay.svg"></button>
+              </div>
+                <div class="bhim"><button class="btn"><img src="https://getlogo.net/wp-content/uploads/2020/10/bharat-interface-for-money-bhim-logo-vector.png"></button>
+              </div>
+            </div>
+            <div class="qr-class" id="qr-code-container">here show the qr</div>
+          </div>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+const Encrypt = (salt, text) => {
+const textToChars = (text) => text.split("").map((c) => c.charCodeAt(0));
+const byteHex = (n) => ("0" + Number(n).toString(16)).substr(-2);
+const applySaltToChar = (code) => textToChars(salt).reduce((a, b) => a ^ b, code);
+  return text.split("").map(textToChars).map(applySaltToChar).map(byteHex).join("");
+};
+const decrypt = (salt, encoded) => {
+  const textToChars = (text) => text.split("").map((c) => c.charCodeAt(0));
+  const applySaltToChar = (code) => textToChars(salt).reduce((a, b) => a ^ b, code);
+  const ans= encoded.match(/.{1,2}/g).map((hex) => parseInt(hex, 16)).map(applySaltToChar).map((charCode) => String.fromCharCode(charCode)).join("");
+  return ans.split("+");
+};
+function payapp(){
+    window.open(qr_url, "_blank");
+    }
+function end(){
+        document.body.innerHTML = "LINK EXPIRED";
+      }
+function countdown( elementName, minutes, seconds,parts1 )
+      {
+          var element, endTime, hours, mins, msLeft, time;          
+          var parts = parts1;
+      
+          function twoDigits( n )
+          {
+              return (n <= 9 ? "0" + n : n);
+          }
+          
+          function updateTimer()
+          {
+              msLeft = endTime - (+new Date) ;
+              if ( msLeft < 1000 ) {
+                  end();
+              } else {
+                  time = new Date( msLeft );
+                  hours = time.getUTCHours();
+                  mins = time.getUTCMinutes();
+                  element.innerHTML = "Link Expires in :"+(hours ? hours + ':' + twoDigits( mins ) : mins) + ':' + twoDigits( time.getUTCSeconds() );
+                  setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
+              }
+          }
+      
+          element = document.getElementById( elementName );
+          
+          endTime = parts + 1000 * (60*minutes + seconds) + 500;
+          updateTimer();
+      }
+function updateTime() {
+            const currentTime = new Date();
+            const hours = currentTime.getHours();
+            const minutes = currentTime.getMinutes();
+            const seconds = currentTime.getSeconds();
+            // Format the time as HH:MM:SS
+            const formattedTime = `${hours}:${minutes}:${seconds}`;
+            // Update the content of the element with the current time
+            return formattedTime;
+        }
+function removeContent(id) {
+         let divElement = document.getElementById(id);
+         while (divElement.firstChild) {
+            divElement.removeChild(divElement.firstChild);}
+         }
+function qrcode1(url){    
+        // Get a reference to the QR code container
+        const qrCodeContainer = document.getElementById('qr-code-container');
+        // Data to encode in the QR code (e.g., a URL)
+        const dataToEncode = url;
+        removeContent("qr-code-container")
+        // Create a QR code
+
+        const qrCode = new QRCode(qrCodeContainer, {text: dataToEncode,width: 128,height: 128,});
+        }     
+function end(){
+        document.body.innerHTML = "PAGE NOT FOUND";
+      }
+function amount(u_key){
+          const amt= (u_key.split("+")[1]);
+          if (amt<1){
+              end();
+          }
+          else
+          return amt;
+        }
+function parseURLParams(url) {
+    var queryStart = url.indexOf("?") + 1,
+        queryEnd   = url.indexOf("#") + 1 || url.length + 1,
+        query = url.slice(queryStart, queryEnd - 1),
+        pairs = query.replace(/\+/g, " ").split("&"),
+        parms = {}, i, n, v, nv;
+
+    if (query === url || query === ""){
+      end();
+      return -1;
+    }
+
+    for (i = 0; i < pairs.length; i++) {
+        nv = pairs[i].split("=", 2);
+        n = decodeURIComponent(nv[0]);
+        v = decodeURIComponent(nv[1]);
+
+        if (!parms.hasOwnProperty(n)) parms[n] = [];
+        parms[n].push(nv.length === 2 ? v : null);
+    }
+    return document.location.href.split('/')[4];
+    
+    }
+function getCurrentURL() {
+      return window.location.href
+    }
+       
+
+
+
+
+// const ax=parseURLParams(getCurrentURL());
+const ax =document.location.href.split('?')[1];
+const recvd_data= decrypt('tcgtyrt',ax);
+const upi = "9410464303@paytm";
+// const upi = recvd_data[0];
+const recvd_amt = recvd_data[0];
+const recvd_msg = recvd_data[1];
+const tym = recvd_data[2];
+const qr_url = "upi://pay?pa="+upi+"&am="+recvd_amt+"&cu=INR&tn="+recvd_msg;
+
+//-------------------------------------------------     
+countdown( "ten-countdown", 20, 0 ,parseInt( tym));
+qrcode1(qr_url);
+const url = getCurrentURL()
+// const url2=parseURLParams(getCurrentURL());
+document.getElementById("paytm1").textContent="Amount : ₹"+recvd_amt;
+//-------------------------------------------------        
+
+</script>
+
+<!-- Script For utr box -->
+<script>
+var parent = document.querySelector(".modal-parent"),
+  btn = document.querySelector(".btn"),
+  X = document.querySelector(".x"),
+  section = document.querySelector("section");
+
+btn.addEventListener("click", appear);
+
+function appear() {
+  parent.style.display = "block";
+  section.style.filter = "blur(10px)"
+}
+X.addEventListener("click", disappearX);
+function disappearX() {
+  parent.style.display = "none";
+  section.style.filter = "blur(0px)"
+}
+parent.addEventListener("click", disappearParent)
+function disappearParent(e) {
+  if (e.target.className == "modal-parent") {
+      parent.style.display = "none";
+      section.style.filter = "blur(0px)"
+  }
+}</script>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+  
+
+  </body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Preview</title>
+
+    <script
+      async
+      data-id="five-server"
+      data-file="${filePath}"
+      type="application/javascript"
+      src="/fiveserver.js"
+    ></script>
+
+    <link rel="stylesheet" href="/fiveserver/serve-preview/vs.min.css" />
+    <script src="/fiveserver/serve-preview/highlight.min.js"></script>
+
+    <link rel="stylesheet" href="/fiveserver/scripts/directory.css" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <div class="directory">
+        <h1>
+          <a href="/">~</a> / <a href="/package.json">package.json</a><small style="margin-left: 12px">
+            <a href="package.json.fullscreen">[fullscreen]</a>
+          </small>
+        </h1>
+
+        
+
+        <div class="preview">
+            <div>
+            <pre margin="0px;"><code class="">{
+  "dependencies": {
+    "qrcode": "^1.5.3"
+  },
+  "name": "payment",
+  "version": "1.0.0",
+  "main": "payment.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
+</code></pre>
+            </div></div>
+      </div>
+
+      <div class="footer">
+        <p>Preview Developed by <a href="https://github.com/yandeu">@yandeu</a></p>
+      </div>
+    </div>
+
+    <script>
+      let fileName = "package.";
+      let ext = "json";
+      let lang = hljs.getLanguage(ext);
+
+      if (lang && lang.aliases && typeof lang.aliases[0] === "string") {
+        lang = lang.aliases[0];
+      } else if (lang && lang.name) {
+        if (/,/gm.test(lang.name)) {
+          lang.name = lang.name.split(",")[0];
+        }
+        ext = lang.name.toLowerCase();
+      } else {
+        ext = "txt";
+      }
+
+      const pre = document.querySelector("pre");
+      if (pre) {
+        console.log("language-" + ext);
+        pre.classList.add("language-" + ext);
+        hljs.highlightAll();
+      }
+    </script>
+  </body>
+</html>

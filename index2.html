@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Input Box</title>
+</head>
+<body>
+<form>
+  <label for="name">UPI ID</label>
+  <input type="text" id="name" name="name">
+  <label for="name">Amount</label>
+  <input type="text" id="amt" name="amt">
+  <label for="name">Custom Message</label>
+  <input type="text" id="msg" name="msg">
+</form>
+<button  onclick=enc()>DONE</button>
+<div class="new" id="new">
+<p><span id="name-display"></span></p>
+<p><span id="name-display2"></span></p></div>
+
+
+
+
+
+
+<script>
+  const Encrypt = (salt, text) => {
+  const textToChars = (text) => text.split("").map((c) => c.charCodeAt(0));
+  const byteHex = (n) => ("0" + Number(n).toString(16)).substr(-2);
+  const applySaltToChar = (code) => textToChars(salt).reduce((a, b) => a ^ b, code);
+  return text.split("").map(textToChars).map(applySaltToChar).map(byteHex).join("");
+};
+function enc(){
+const nameInput = document.getElementById("name");
+const amt = document.getElementById("amt");
+const msg = document.getElementById("msg");
+const nameDisplay = document.getElementById("name-display");
+const nameDisplay2 = document.getElementById("name-display2");
+
+const uurl =  "upi://pay?pa="+nameInput.value+"&pn=Amit Kumar&am="+amt.value+"&cu=INR&tn="+msg.value;
+const url2 = amt.value+"+"+msg.value;
+// nameInput.value +"+"
+const encmsg = Encrypt('hy56',uurl+updateTime());
+const encmsg2 = Encrypt('tcgtyrt',url2+updateTime());
+
+// huvC475c
+
+    nameDisplay.textContent = "index.html?key="+encmsg ;
+    nameDisplay2.textContent = "index.html?key="+encmsg2 ;
+    let divContainer = document.getElementById("new");
+    let aTag = document.createElement('a');
+    aTag.innerHTML = 'I am a link';
+    aTag.setAttribute('href', "index.html?key="+encmsg);
+    // window.open("index.html?key="+encmsg,"_blank");
+    window.open("index.html?"+encmsg2)
+    divContainer.appendChild(aTag);
+
+}
+
+function updateTime() {
+            const currentTime = (+new Date());
+            // Format the time as HH:MM:SS
+            // Update the content of the element with the current time
+            return '+'+String(currentTime);
+        
+          }
+
+</script>
+</body>
+</html>
+
+
+
+<!-- <div class="d-flex justify-content-between align-items-center">
+  <h5 class="total-amount">Total amount</h5>
+  <div class="amount-container"><span class="amount-text"><span class="dollar-sign">$</span>375</span></div>
+</div>
+<div class="pt-4"> <label class="d-flex justify-content-between"> <span class="label-text label-text-cc-number">CARD NUMBER</span><img src="https://img.icons8.com/dusk/64/000000/visa.png" width="30" class="visa-icon" /></label> <input type="tel" name="credit-number" class="form-control credit-card-number" maxlength="19" placeholder="Card number"> </div>
+<div class="d-flex justify-content-between pt-4">
+  <div> <label><span class="label-text">EXPIRY</span> </label> <input type="date" name="expiry-date" class="form-control expiry-class" placeholder="MM / YY"> </div>
+  <div> <label><span class="label-text">CVV</span></label> <input type="tel" name="cvv-number" class="form-control cvv-class" maxlength="4" pattern="\d*"> </div>
+</div>
+<div class="d-flex justify-content-between pt-5 align-items-center"> <button type="button" class="btn cancel-btn">Cancel</button> <button type="button" class="btn payment-btn">Make Payment</button> </div> -->

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <!-- Include the QR code generation library -->
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+<!-- Code injected by Five-server -->
+  <script async data-id="five-server" data-file="c:\Users\AARYAN\.vscode\.vscode\payment\payment.html" type="application/javascript" src="/fiveserver.js"></script>
+  </head>
+<body>
+    <h1>payment</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus culpa error quas soluta rem debitis odit labore voluptates porro? Deleniti expedita ad esse.</p>
+    <p id="qr-code-container"></p>
+
+    <script>
+        // Get a reference to the QR code container
+        const qrCodeContainer = document.getElementById('qr-code-container');
+      
+        // Data to encode in the QR code (e.g., a URL)
+        const dataToEncode = 'upi://pay?pa=hiiiiii@paytm&pn=AmitKumar&am=10000&cu=INR&tn=fsbskdbfsdbfsdfbk';
+      
+        // Create a QR code
+        const qrCode = new QRCode(qrCodeContainer, {
+          text: dataToEncode,
+          width: 128,
+          height: 128,
+        });
+      </script>
+</body>
+</html>
