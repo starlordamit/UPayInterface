@@ -218,7 +218,7 @@ function qrcode1(url){
         const qrCode = new QRCode(qrCodeContainer, {text: dataToEncode,width: 128,height: 128,});
         }     
 function end(){
-        document.body.innerHTML = "PAGE NOT FOUND";
+        document.body.innerHTML = "Error Code : 410 <br>Gone The requested resource is no longer available at the server and no forwarding address is known.";
       }
 function amount(u_key){
           const amt= (u_key.split("+")[1]);
