@@ -312,12 +312,3 @@ function disappearParent(e) {
 
   </body>
 </html>
-//qrite a code for qr code Generator
-function qrcode(url){
-    // Get a reference to the QR code container
-    const qrCodeContainer = document.getElementById('qr-code-container');
-    // Data to encode in the QR code (e.g., a URL)
-    const dataToEncode = url;
-    // Create a QR code
-    const qrCode = new QRCode(qrCodeContainer, {text: dataToEncode,width: 128,height: 128,});
-    }
