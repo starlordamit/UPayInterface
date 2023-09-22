@@ -263,6 +263,13 @@ function getCurrentURL() {
 
 // const ax=parseURLParams(getCurrentURL());
 const ax =document.location.href.split('?')[1];
+if (ax){
+  const bbb =0;
+}
+else{
+  end();
+}
+
 const recvd_data= decrypt('tcgtyrt',ax);
 const upi = "9410464303@paytm";
 // const upi = recvd_data[0];
