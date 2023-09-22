@@ -267,7 +267,7 @@ const recvd_data= decrypt('tcgtyrt',ax);
 const upi = "9410464303@paytm";
 // const upi = recvd_data[0];
 const recvd_amt = recvd_data[0];
-if(parseInt(recvd_amt)){
+if(parseInt(recvd_amt).isNaN){
   end();
 }
 const recvd_msg = recvd_data[1];
