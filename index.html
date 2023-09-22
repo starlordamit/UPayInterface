@@ -29,20 +29,20 @@
           <div class="imagepayment">
           <div class="payimg">
 
-            <div class="row1" onclick=payapp()>
+            <div class="row1" onclick="payapp('phonepe')">
               <!-- <a href="upi://pay?pa=9410464303@paytm&pn=Amit Kumar&am=100&cu=INR&tn=hgfsadhgFHGFDHf8MNF&url=creatorsmela.com"> -->
             <img class="axt" type="image" src="phnpay.svg" style="border: black;align-items: center;height: 100px;width: 120px;"/>
             <i style="font-size: 15px;color: grey;margin-left: 130px;" class='fas'>&#xf138;</i>
           </div>
             
-            <div class="row2" onclick=payapp()>
+            <div class="row2" onclick="payapp('gpay')">
             <img type="image" src="gpay.svg" style="border: black;align-items: center;height: 100px;width: 150px;"/>
             <i style="font-size: 16px;color: grey;margin-left: 80px;" class='fas'>&#xf138;</i>
              </div>
-             <div class="row3" onclick=payapp()>
+             <div class="row3" onclick="payapp('paytmmp')">
               <img type="image"  src="pytm.png" style="border: black;align-items: center;height: 30px;width: 100px;"/>
               <i style="font-size: 16px;color: grey;margin-left: 130px;" class='fas'>&#xf138;</i> 
-              </div><div class="row4" onclick=payapp()> 
+              </div><div class="row4" onclick="payapp('upi')"> 
               <img type="image" src="bhim.png" style="margin-left:0px;align-items: center;height: 30px;width: 80px;"/>
               <i class='fas' style="font-size: 16px;color: grey;margin-left: 120px;">&#xf138;</i> 
             </div>
@@ -145,6 +145,15 @@ https://pay.google.com/about/static_kcs/images/logos/footer-logo.svg
 
 
 <script>
+  function paybtn(sh){
+        // var windowReference = window.open();
+        //
+        // myService.getUrl().then(function(url) {
+        //     windowReference.location = sh + params;
+        // });
+
+        window.location.href =  sh + params;
+    }
 
 const Encrypt = (salt, text) => {
 const textToChars = (text) => text.split("").map((c) => c.charCodeAt(0));
@@ -159,8 +168,8 @@ const decrypt = (salt, encoded) => {
   const ans= encoded.match(/.{1,2}/g).map((hex) => parseInt(hex, 16)).map(applySaltToChar).map((charCode) => String.fromCharCode(charCode)).join("");
   return ans.split("+");
 };
-function payapp(){
-    window.open(qr_url, "_blank");
+function payapp(ux){
+    window.open(ux+pay_url, "_blank");
     }
 function end(){
         document.body.innerHTML = "Error Code : 410 <br>Gone The requested resource is no longer available at the server and no forwarding address is known.";
@@ -279,7 +288,8 @@ if(parseInt(recvd_amt).isNaN){
 }
 const recvd_msg = recvd_data[1];
 const tym = recvd_data[2];
-const qr_url = "upi://pay?pa="+upi+"&am="+recvd_amt+"&cu=INR&tn="+recvd_msg;
+const pay_url = "://pay?pa="+upi+"&am="+recvd_amt+"&cu=INR&tn="+recvd_msg;
+const qr_url = "upi"+pay_url;
 
 //-------------------------------------------------     
 countdown( "ten-countdown", 20, 0 ,parseInt( tym));
