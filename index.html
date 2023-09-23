@@ -29,20 +29,20 @@
           <div class="imagepayment">
           <div class="payimg">
 
-            <div class="row1" onclick="payapp('phonepe')">
+            <div class="row1" onclick="payapp('phonepe://pay?')">
               <!-- <a href="upi://pay?pa=9410464303@paytm&pn=Amit Kumar&am=100&cu=INR&tn=hgfsadhgFHGFDHf8MNF&url=creatorsmela.com"> -->
             <img class="axt" type="image" src="phnpay.svg" style="border: black;align-items: center;height: 100px;width: 120px;"/>
             <i style="font-size: 15px;color: grey;margin-left: 130px;" class='fas'>&#xf138;</i>
           </div>
             
-            <div class="row2" onclick="payapp('gpay')">
+            <div class="row2" onclick="payapp('gpay://upi/pay?')">
             <img type="image" src="gpay.svg" style="border: black;align-items: center;height: 100px;width: 150px;"/>
             <i style="font-size: 16px;color: grey;margin-left: 80px;" class='fas'>&#xf138;</i>
              </div>
-             <div class="row3" onclick="payapp('paytmmp')">
+             <div class="row3" onclick="payapp('paytmmp://pay?')">
               <img type="image"  src="pytm.png" style="border: black;align-items: center;height: 30px;width: 100px;"/>
               <i style="font-size: 16px;color: grey;margin-left: 130px;" class='fas'>&#xf138;</i> 
-              </div><div class="row4" onclick="payapp('upi')"> 
+              </div><div class="row4" onclick="payapp('upi://pay?')"> 
               <img type="image" src="bhim.png" style="margin-left:0px;align-items: center;height: 30px;width: 80px;"/>
               <i class='fas' style="font-size: 16px;color: grey;margin-left: 120px;">&#xf138;</i> 
             </div>
@@ -288,7 +288,7 @@ if(parseInt(recvd_amt).isNaN){
 }
 const recvd_msg = recvd_data[1];
 const tym = recvd_data[2];
-const pay_url = "://pay?pa="+upi+"&am="+recvd_amt+"&cu=INR&tn="+recvd_msg;
+const pay_url = "pa="+upi+"&am="+recvd_amt+"&cu=INR&tn="+recvd_msg;
 const qr_url = "upi"+pay_url;
 
 //-------------------------------------------------     
